@@ -10,12 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var textFieldText = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    @IBOutlet var textField: UITextField!
+    
     @IBAction func conbertHiragana() {
-        print("hoge")
+        textFieldText = textField.text!
+        print(textFieldText)
     }
 
 
