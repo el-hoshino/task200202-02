@@ -51,6 +51,7 @@
 		03696E42240A4C7200239EB4 /* task200202_02UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = task200202_02UITests.swift; sourceTree = "<group>"; };
 		03696E44240A4C7200239EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03696E50240A636900239EB4 /* HiraganaApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiraganaApi.swift; sourceTree = "<group>"; };
+		0399CA9D240B584A00621123 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +82,7 @@
 		03696E14240A4C7000239EB4 = {
 			isa = PBXGroup;
 			children = (
+				0399CA9D240B584A00621123 /* README.md */,
 				03696E1F240A4C7100239EB4 /* task200202-02 */,
 				03696E36240A4C7200239EB4 /* task200202-02Tests */,
 				03696E41240A4C7200239EB4 /* task200202-02UITests */,
