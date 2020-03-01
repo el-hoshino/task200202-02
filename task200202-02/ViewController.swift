@@ -10,10 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet var textField: UITextField!
-    @IBOutlet var convertedTextLabel: UILabel!
-    
-    var textFieldText = ""
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var convertedTextLabel: UILabel!
+
+    var textViewText = ""
     
     let api = API()
     
@@ -39,15 +39,15 @@ class ViewController: UIViewController {
     
     
     @IBAction func convertHiragana() {
-        textFieldText = textField.text!
-        let textLen: Int = textFieldText.utf8.count
+        textViewText = textView.text!
+        let textLen: Int = textViewText.utf8.count
         
         if textLen == 0 {
             dispAlert("空の文字列", "1文字以上の文字列を入力してください")
             return
         }
         
-        self.api.convertHiragana(convertTextForApi: textFieldText) { (convertedStr) in
+        self.api.convertHiragana(convertTextForApi: textViewText) { (convertedStr) in
         guard let _convertedStr = convertedStr else {
             self.dispAlert("変換失敗", "開発者にお問い合わせください")
               return
