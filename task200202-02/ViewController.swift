@@ -10,14 +10,51 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var textField: UITextField!
+    @IBOutlet var convertedTextLabel: UILabel!
+    
+    var textFieldText = ""
+    
+    let api = API()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.convertedTextLabel.numberOfLines = 0
     }
-    @IBAction func conbertHiragana() {
-        print("hoge")
+    
+    // 変換する文字列が空（文字数が0）の時のアラート
+    func dispAlert(_ alertTitle: String, _ alertMessage: String) {
+        let alert: UIAlertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle:  UIAlertController.Style.alert)
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            return
+        })
+        
+        alert.addAction(defaultAction)
+
+        present(alert, animated: true, completion: nil)
     }
-
-
+    
+    
+    @IBAction func convertHiragana() {
+        textFieldText = textField.text!
+        let textLen: Int = textFieldText.utf8.count
+        
+        if textLen == 0 {
+            dispAlert("空の文字列", "1文字以上の文字列を入力してください")
+            return
+        }
+        
+        self.api.convertHiragana(convertTextForApi: textFieldText) { (convertedStr) in
+        guard let _convertedStr = convertedStr else {
+            self.dispAlert("変換失敗", "開発者にお問い合わせください")
+              return
+          }
+          DispatchQueue.main.async {
+              self.convertedTextLabel.text = _convertedStr
+          }
+        }
+    }
 }
-
