@@ -15,6 +15,7 @@
 		03696E2D240A4C7200239EB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03696E2B240A4C7200239EB4 /* LaunchScreen.storyboard */; };
 		03696E38240A4C7200239EB4 /* task200202_02Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03696E37240A4C7200239EB4 /* task200202_02Tests.swift */; };
 		03696E43240A4C7200239EB4 /* task200202_02UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03696E42240A4C7200239EB4 /* task200202_02UITests.swift */; };
+		03696E51240A636900239EB4 /* HiraganaApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03696E50240A636900239EB4 /* HiraganaApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		03696E3E240A4C7200239EB4 /* task200202-02UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "task200202-02UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03696E42240A4C7200239EB4 /* task200202_02UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = task200202_02UITests.swift; sourceTree = "<group>"; };
 		03696E44240A4C7200239EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03696E50240A636900239EB4 /* HiraganaApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiraganaApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				03696E20240A4C7100239EB4 /* AppDelegate.swift */,
+				03696E50240A636900239EB4 /* HiraganaApi.swift */,
 				03696E22240A4C7100239EB4 /* SceneDelegate.swift */,
 				03696E24240A4C7100239EB4 /* ViewController.swift */,
 				03696E26240A4C7100239EB4 /* Main.storyboard */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03696E25240A4C7100239EB4 /* ViewController.swift in Sources */,
+				03696E51240A636900239EB4 /* HiraganaApi.swift in Sources */,
 				03696E21240A4C7100239EB4 /* AppDelegate.swift in Sources */,
 				03696E23240A4C7100239EB4 /* SceneDelegate.swift in Sources */,
 			);
