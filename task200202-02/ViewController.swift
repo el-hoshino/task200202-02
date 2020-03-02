@@ -19,7 +19,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderWidth = 1.0
+        
+        // 変換後テキストの文字列を折り返す
         self.convertedTextLabel.numberOfLines = 0
     }
     
