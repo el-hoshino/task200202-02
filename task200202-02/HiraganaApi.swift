@@ -8,21 +8,21 @@
 
 import Foundation
 
-class API {
-    let host = "https://labs.goo.ne.jp/api"
-    let appID = ProcessInfo.processInfo.environment["GOO_API_KEY"] ?? nil
-    let requestID = "record003"
-    let postMethod = "POST"
+class HiraganaAPI {
+    private let host = "https://labs.goo.ne.jp/api"
+    private let appID = ProcessInfo.processInfo.environment["GOO_API_KEY"] ?? nil
+    private let requestID = "record003"
+    private let postMethod = "POST"
 
-    func convertHiragana(convertTextForApi: String, completion:((String?) -> Void)?) {
-       let url = "https://labs.goo.ne.jp/api/hiragana"
+    func convert(convertText: String, completion:((String?) -> Void)?) {
+        let url = "https://labs.goo.ne.jp/api/hiragana"
         let outputType = "hiragana"
-        let postData = PostData(app_id: self.appID!, request_id: requestID, sentence: convertTextForApi, output_type: outputType)
+        let postData = PostData(app_id: self.appID!, request_id: requestID, sentence: convertText, output_type: outputType)
 
         self.request(method: "POST", url: url, postData: postData, completion: completion)
     }
 
-    func request(method: String, url: String, postData:PostData,  completion:((String?) -> Void)?) {
+    private func request(method: String, url: String, postData:PostData,  completion:((String?) -> Void)?) {
         guard let _url = URL(string: url) else { return }
         // URLRequstの設定
         var request = URLRequest(url: _url)
@@ -68,6 +68,7 @@ class API {
         task.resume()
     }
 }
+
 struct Rubi:Codable {
     var request_id: String
     var output_type: String

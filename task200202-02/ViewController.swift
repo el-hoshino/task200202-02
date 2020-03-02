@@ -15,11 +15,12 @@ class ViewController: UIViewController {
 
     var textViewText = ""
     
-    let api = API()
+    let hiraganaAPI = HiraganaAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 枠線
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.borderWidth = 1.0
         
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
             return
         }
         
-        self.api.convertHiragana(convertTextForApi: textViewText) { (convertedStr) in
+        self.hiraganaAPI.convert(convertText: textViewText) { (convertedStr) in
         guard let _convertedStr = convertedStr else {
             self.dispAlert("変換失敗", "開発者にお問い合わせください")
               return
