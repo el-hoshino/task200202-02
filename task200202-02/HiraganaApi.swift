@@ -13,12 +13,21 @@ class HiraganaAPI {
     private let appID = ProcessInfo.processInfo.environment["GOO_API_KEY"] ?? nil
     private let requestID = "record003"
     private let postMethod = "POST"
-
+    
     func convert(convertText: String, completion:((String?) -> Void)?) {
+        
+        // appIDが環境変数に入っていない場合
+        if appID == nil {
+            debugPrint("appID is empty. Please set environment variable GOO_API_KEY")
+            completion?(nil)
+            return
+        }
+        
         let url = "https://labs.goo.ne.jp/api/hiragana"
         let outputType = "hiragana"
         let postData = PostData(app_id: self.appID!, request_id: requestID, sentence: convertText, output_type: outputType)
 
+        debugPrint("(before) convert text: ", convertText)
         self.request(method: "POST", url: url, postData: postData, completion: completion)
     }
 
@@ -37,19 +46,26 @@ class HiraganaAPI {
         request.httpBody = uploadData
 
         //APIへPOSTしてresponseを受け取る
-        let task = URLSession.shared.uploadTask(with: request, from: uploadData) {
-            data, response, error in
+        let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
             if let error = error {
                 debugPrint ("error: \(error)")
                 completion?(nil)
                 return
             }
-            guard let response = response as? HTTPURLResponse,
-                (200...299).contains(response.statusCode) else {
-                    debugPrint ("server error")
-                    completion?(nil)
-                    return
+            
+            guard let response = response as? HTTPURLResponse else {
+                debugPrint("server error")
+                completion?(nil)
+                return
             }
+            
+            if !((200...299).contains(response.statusCode)) {
+                let errorMessage: String = HTTPURLResponse.localizedString(forStatusCode: response.statusCode)
+                debugPrint("\(response.statusCode): \(errorMessage)")
+                completion?(nil)
+                return
+            }
+
             guard response.statusCode == 200 else {
                 debugPrint("サーバエラー ステータスコード: \(response.statusCode)\n")
                 completion?(nil)
@@ -61,13 +77,14 @@ class HiraganaAPI {
                 completion?(nil)
                 return
             }
-            debugPrint(jsonData.converted)
+            debugPrint("(after) converted text: ", jsonData.converted)
             completion?(jsonData.converted)
 
         }
         task.resume()
     }
 }
+
 
 struct Rubi:Codable {
     var request_id: String
