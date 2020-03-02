@@ -42,6 +42,9 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func deleteTextView() {
+        textView.text = ""
+    }
     
     @IBAction func convertHiragana() {
         textViewText = textView.text!
