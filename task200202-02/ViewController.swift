@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         let textLen: Int = textViewText.utf8.count
         
         if textLen == 0 {
-            dispAlert("空の文字列", "1文字以上の文字列を入力してください")
+            self.dispAlert("空の文字列", "1文字以上の文字列を入力してください")
             return
         }
         
