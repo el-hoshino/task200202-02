@@ -44,6 +44,7 @@ Xcodeに慣れる時間と機能追加に大半の時間を割いたので、テ
     - 参考：[【今日からできる】コミットメッセージに 「プレフィックス」 をつけるだけで、開発効率が上がった話](https://qiita.com/numanomanu/items/45dd285b286a1f7280ed)  
 - ブランチの命名規則  
     - `feature\{issue番号}`  
+    - 参考：- [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)  
   
 ## 悩み  
 - APIから受け取ったレスポンスから、エラーの際の細かいメッセージを取得したかったができなかった。　　（`HiraganaApi.swift`）  
@@ -80,9 +81,9 @@ if !((200...299).contains(response.statusCode)) {
     - [やさしいSwift単体テスト 〜テスト可能なクラス設計・前編〜](https://qiita.com/yokoyas000/items/b00012c8b1a84238becf) こちらを現在読んでいます。  
 - 複数デバイスに対応するレイアウト構築  
     - iPhone 11 Pro Maxでレイアウトを作成していましたが、iPhone8などの他サイズのデバイスでレイアウトが崩れます。これは各UI要素の位置を絶対位置で置いているからだと考えます。  
+    - 変換後の文字列をタップしたらコピーする機能（[issue#4](https://github.com/tokizuoh/task200202-02/issues/4)）をiOS13では非推奨の関数を使用しているため修正が必要。  
   
 ## 参考にしたサイト  
   - [【Xcode】ひらがな化APIを使ったアプリを作りました【Swift】](https://qiita.com/haruusagi/items/9da1ca30f56487f21801)  
       - おそらく同じ課題を受けた方だと思われる。この方のコードに加え、エラーメッセージの詳細表示などのリファクタリングを行った。  
-- [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)  
-    - ブランチの命名規則について  
+  
