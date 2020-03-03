@@ -70,7 +70,7 @@ if !((200...299).contains(response.statusCode)) {
         - 関数の呼ぶ方：関数の戻り値でエラーハンドリング  
         - 関数の呼ばれる方：エラーメッセージを出力して強制終了  
   
-  ## 参考にしたサイト  
+## 参考にしたサイト  
   - [【Xcode】ひらがな化APIを使ったアプリを作りました【Swift】](https://qiita.com/haruusagi/items/9da1ca30f56487f21801)  
       - おそらく同じ課題を受けた方だと思われる。この方のコードに加え、エラーメッセージの詳細表示などのリファクタリングを行った。  
 - [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)  
