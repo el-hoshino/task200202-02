@@ -42,13 +42,16 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func deleteTextView() {
+        textView.text = ""
+    }
     
     @IBAction func convertHiragana() {
         textViewText = textView.text!
         let textLen: Int = textViewText.utf8.count
         
         if textLen == 0 {
-            dispAlert("空の文字列", "1文字以上の文字列を入力してください")
+            self.dispAlert("空の文字列", "1文字以上の文字列を入力してください")
             return
         }
         
