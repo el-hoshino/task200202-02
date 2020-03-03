@@ -49,7 +49,7 @@ iOSアプリ開発について期間を設けて勉強するのは初めてで�
         - 存在しない `appID`  
         - 存在しない `outputType`  
         - `Content-Type` が空  
-    - 参考：[gooラボ：APIのエラーレスポンスについて](https://labs.goo.ne.jp/api_error_info/)
+    - 参考：[gooラボ：APIのエラーレスポンスについて](https://labs.goo.ne.jp/api_error_info/)  
   
 ```swift
 if !((200...299).contains(response.statusCode)) {
@@ -69,6 +69,15 @@ if !((200...299).contains(response.statusCode)) {
     - 例えば、関数の呼ぶ方、呼ばれる方  
         - 関数の呼ぶ方：関数の戻り値でエラーハンドリング  
         - 関数の呼ばれる方：エラーメッセージを出力して強制終了  
+  
+## 改善点  
+- MVC/MVP/MVVM/Redux による適切な設計  
+    - どの言語でもこういった設計を実装に落とし込んだことがないので次回提出時にチャレンジします。  
+- gitの運用 (READMEなどのドキュメント整備は単独でブランチ切るか？など)  
+- テストの導入 
+    - [やさしいSwift単体テスト~テスト可能なクラス設計・前編~](https://qiita.com/yokoyas000/items/b00012c8b1a84238becf) こちらを現在読んでいます。  
+- 複数デバイスに対応するレイアウト構築  
+    - iPhone 11 Pro Maxでレイアウトを作成していましたが、iPhone8などの他サイズのデバイスでレイアウトが崩れます。これは各UI要素の位置を絶対位置で置いているからだと考えます。  
   
 ## 参考にしたサイト  
   - [【Xcode】ひらがな化APIを使ったアプリを作りました【Swift】](https://qiita.com/haruusagi/items/9da1ca30f56487f21801)  
