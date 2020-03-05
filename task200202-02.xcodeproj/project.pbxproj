@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		034C45BE24108CBB0042264F /* TASK.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TASK.md; sourceTree = "<group>"; };
 		03696E1D240A4C7100239EB4 /* task200202-02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "task200202-02.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03696E20240A4C7100239EB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03696E22240A4C7100239EB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				03696E20240A4C7100239EB4 /* AppDelegate.swift */,
+				034C45BE24108CBB0042264F /* TASK.md */,
 				03696E50240A636900239EB4 /* HiraganaApi.swift */,
 				03696E22240A4C7100239EB4 /* SceneDelegate.swift */,
 				0380A404240DECA6003907E1 /* CopyUILabel.swift */,
