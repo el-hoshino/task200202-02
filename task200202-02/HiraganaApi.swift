@@ -14,12 +14,12 @@ class HiraganaAPI {
     private let requestID = "record003"
     private let postMethod = "POST"
     
-    func convert(convertText: String, completion:((String?) -> Void)?) {
+    func convert(convertText: String, completion:@escaping (Result<String, Error>) -> Void) {
         
         // appIDが環境変数に入っていない場合
         if appID == nil {
             debugPrint("appID is empty. Please set environment variable GOO_API_KEY")
-            completion?(nil)
+            completion(.failure(APIError.unknown("no environment variable")))
             return
         }
         
@@ -31,7 +31,7 @@ class HiraganaAPI {
         self.request(method: "POST", url: url, postData: postData, completion: completion)
     }
     
-    private func request(method: String, url: String, postData:PostData,  completion:((String?) -> Void)?) {
+    private func request(method: String, url: String, postData:PostData, completion: @escaping(Result<String, Error>) -> Void) {
         guard let _url = URL(string: url) else { return }
         // URLRequstの設定
         var request = URLRequest(url: _url)
@@ -49,42 +49,47 @@ class HiraganaAPI {
         let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
             if let error = error {
                 debugPrint ("error: \(error)")
-                completion?(nil)
+                completion(.failure(error))
                 return
             }
             
             guard let response = response as? HTTPURLResponse else {
                 debugPrint("server error")
-                completion?(nil)
+                completion(.failure(APIError.network))
                 return
             }
             
             if !((200...299).contains(response.statusCode)) {
                 let errorMessage: String = HTTPURLResponse.localizedString(forStatusCode: response.statusCode)
                 debugPrint("\(response.statusCode): \(errorMessage)")
-                completion?(nil)
+                completion(.failure(APIError.server(response.statusCode)))
                 return
             }
             
             guard response.statusCode == 200 else {
                 debugPrint("サーバエラー ステータスコード: \(response.statusCode)\n")
-                completion?(nil)
+                completion(.failure(APIError.server(response.statusCode)))
                 return
             }
             
             guard let data = data, let jsonData = try? JSONDecoder().decode(Rubi.self, from: data) else {
                 debugPrint("json変換に失敗しました")
-                completion?(nil)
+                completion(.failure(APIError.unknown("jsonの変換エラー")))
                 return
             }
             debugPrint("(after) converted text: ", jsonData.converted)
-            completion?(jsonData.converted)
+            completion(.success(jsonData.converted))
             
         }
         task.resume()
     }
 }
 
+enum APIError: Error {
+    case network
+    case server(Int)
+    case unknown(String)
+}
 
 struct Rubi:Codable {
     var request_id: String

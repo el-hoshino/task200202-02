@@ -50,14 +50,16 @@ class ViewController: UIViewController {
             return
         }
         
-        self.hiraganaAPI.convert(convertText: textViewText) { (convertedStr) in
-            guard let _convertedStr = convertedStr else {
-                // APIで変換に失敗したときにアラート
+        self.hiraganaAPI.convert(convertText: textViewText) { (result) in
+            switch result {
+            case.success(let value):
+                DispatchQueue.main.async {
+                    self.convertedTextLabel.text = value
+                }
+            case.failure(let error):
+                debugPrint(error)
                 self.displayAlert(alertTitle: "変換失敗", alertMessage: "開発者にお問い合わせください")
                 return
-            }
-            DispatchQueue.main.async {
-                self.convertedTextLabel.text = _convertedStr
             }
         }
     }
