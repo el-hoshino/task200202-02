@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,48 +15,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ひらがな変換" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDE-AK-jgX">
-                                <rect key="frame" x="155" y="143" width="104" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ひらがな変換" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDE-AK-jgX">
+                                <rect key="frame" x="155" y="94" width="104" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="ここに文字を入力してください" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wBz-AD-ggl">
-                                <rect key="frame" x="86" y="213" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="ここに文字を入力してください" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wBz-AD-ggl">
+                                <rect key="frame" x="50" y="134.33333333333331" width="314" height="248.33333333333331"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ここに変換された文字が出力されます" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltg-Yx-jlR" customClass="CopyUILabel" customModule="task200202_02">
-                                <rect key="frame" x="60" y="468" width="295" height="271"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="V3H-Zj-TXb">
+                                <rect key="frame" x="128.66666666666666" y="413" width="156.99999999999997" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRO-6Z-4M8">
+                                        <rect key="frame" x="0.0" y="0.0" width="31" height="80"/>
+                                        <state key="normal" title="削除">
+                                            <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteTextView" destination="BYZ-38-t0r" eventType="touchUpInside" id="RfO-p0-8Cd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2p-O7-ROW">
+                                        <rect key="frame" x="126" y="0.0" width="31" height="80"/>
+                                        <state key="normal" title="変換"/>
+                                        <connections>
+                                            <action selector="convertHiragana" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTo-Cj-mBx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="1iC-BO-f4X"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ここに変換された文字が出力されます" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltg-Yx-jlR" customClass="CopyUILabel" customModule="task200202_02">
+                                <rect key="frame" x="50" y="538" width="314" height="224"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2p-O7-ROW">
-                                <rect key="frame" x="225" y="379" width="48" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="変換"/>
-                                <connections>
-                                    <action selector="convertHiragana" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTo-Cj-mBx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRO-6Z-4M8">
-                                <rect key="frame" x="140" y="379" width="48" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="削除">
-                                    <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteTextView" destination="BYZ-38-t0r" eventType="touchUpInside" id="RfO-p0-8Cd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ltg-Yx-jlR" firstAttribute="top" secondItem="V3H-Zj-TXb" secondAttribute="bottom" constant="45" id="1wo-dI-2CI"/>
+                            <constraint firstItem="V3H-Zj-TXb" firstAttribute="top" secondItem="wBz-AD-ggl" secondAttribute="bottom" constant="30.5" id="6ok-VM-oSz"/>
+                            <constraint firstItem="SDE-AK-jgX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IW8-hm-mq2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ltg-Yx-jlR" secondAttribute="bottom" constant="100" id="JVv-6O-DdP"/>
+                            <constraint firstItem="wBz-AD-ggl" firstAttribute="top" secondItem="SDE-AK-jgX" secondAttribute="bottom" constant="20" id="QQQ-J3-9vg"/>
+                            <constraint firstItem="ltg-Yx-jlR" firstAttribute="width" secondItem="wBz-AD-ggl" secondAttribute="width" id="R7x-iz-0YF"/>
+                            <constraint firstItem="V3H-Zj-TXb" firstAttribute="width" secondItem="wBz-AD-ggl" secondAttribute="width" multiplier="0.5" id="WWV-lW-Qyz"/>
+                            <constraint firstItem="V3H-Zj-TXb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YnX-Rs-cOm"/>
+                            <constraint firstItem="wBz-AD-ggl" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" constant="-100" id="baH-26-gKI"/>
+                            <constraint firstItem="ltg-Yx-jlR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bts-jN-g2R"/>
+                            <constraint firstItem="SDE-AK-jgX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="dCu-6U-cC1"/>
+                            <constraint firstItem="V3H-Zj-TXb" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="dZG-nz-Z8k"/>
+                            <constraint firstItem="wBz-AD-ggl" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gkZ-v2-hhh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
