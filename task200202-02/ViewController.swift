@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var convertedTextLabel: UILabel!
     
-    var textViewText = ""
     
     let hiraganaAPI = HiraganaAPI()
     
@@ -46,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func convertHiragana() {
-        textViewText = textView.text!
+        let textViewText = textView.text!
         let isStringEmpty: Bool = textViewText.isEmpty
         
         // 文字列が空のときにアラート
