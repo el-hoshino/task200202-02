@@ -29,11 +29,7 @@ class ViewController: UIViewController {
     
     func displayAlert(alertTitle: String, alertMessage: String) {
         let alert: UIAlertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle:  UIAlertController.Style.alert)
-        
-        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
-            (action: UIAlertAction!) -> Void in
-            return
-        })
+        let defaultAction = UIAlertAction(title: "OK", style: .default)
         
         alert.addAction(defaultAction)
         
