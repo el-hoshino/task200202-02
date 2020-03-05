@@ -9,11 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var convertedTextLabel: UILabel!
-
-    var textViewText = ""
+    
     
     let hiraganaAPI = HiraganaAPI()
     
@@ -37,7 +36,7 @@ class ViewController: UIViewController {
         })
         
         alert.addAction(defaultAction)
-
+        
         present(alert, animated: true, completion: nil)
     }
     
@@ -46,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func convertHiragana() {
-        textViewText = textView.text!
+        let textViewText = textView.text!
         let isStringEmpty: Bool = textViewText.isEmpty
         
         // 文字列が空のときにアラート
@@ -56,14 +55,14 @@ class ViewController: UIViewController {
         }
         
         self.hiraganaAPI.convert(convertText: textViewText) { (convertedStr) in
-        guard let _convertedStr = convertedStr else {
-            // APIで変換に失敗したときにアラート
-            self.displayAlert(alertTitle: "変換失敗", alertMessage: "開発者にお問い合わせください")
-              return
-          }
-          DispatchQueue.main.async {
-              self.convertedTextLabel.text = _convertedStr
-          }
+            guard let _convertedStr = convertedStr else {
+                // APIで変換に失敗したときにアラート
+                self.displayAlert(alertTitle: "変換失敗", alertMessage: "開発者にお問い合わせください")
+                return
+            }
+            DispatchQueue.main.async {
+                self.convertedTextLabel.text = _convertedStr
+            }
         }
     }
 }
