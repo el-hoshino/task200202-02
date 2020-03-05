@@ -28,7 +28,6 @@ class ViewController: UIViewController {
         self.convertedTextLabel.numberOfLines = 0
     }
     
-    // 変換する文字列が空（文字数が0）の時のアラート
     func displayAlert(alertTitle: String, alertMessage: String) {
         let alert: UIAlertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle:  UIAlertController.Style.alert)
         
@@ -48,15 +47,17 @@ class ViewController: UIViewController {
     
     @IBAction func convertHiragana() {
         textViewText = textView.text!
-        let textLen: Int = textViewText.utf8.count
+        let isStringEmpty: Bool = textViewText.isEmpty
         
-        if textLen == 0 {
+        // 文字列が空のときにアラート
+        if isStringEmpty {
             self.displayAlert(alertTitle: "空の文字列", alertMessage: "1文字以上の文字列を入力してください")
             return
         }
         
         self.hiraganaAPI.convert(convertText: textViewText) { (convertedStr) in
         guard let _convertedStr = convertedStr else {
+            // APIで変換に失敗したときにアラート
             self.displayAlert(alertTitle: "変換失敗", alertMessage: "開発者にお問い合わせください")
               return
           }
