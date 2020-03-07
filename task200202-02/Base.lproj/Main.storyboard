@@ -24,15 +24,20 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="ここに文字を入力してください" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wBz-AD-ggl">
                                 <rect key="frame" x="50" y="134.33333333333331" width="314" height="248.33333333333331"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="beforeConvertTextView"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="8bC-Xf-vdC" id="H99-01-Gi5"/>
+                                </connections>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="V3H-Zj-TXb">
                                 <rect key="frame" x="128.66666666666666" y="413" width="156.99999999999997" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRO-6Z-4M8">
                                         <rect key="frame" x="0.0" y="0.0" width="31" height="80"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="deleteTextViewTextButton"/>
                                         <state key="normal" title="削除">
                                             <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
