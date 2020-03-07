@@ -59,19 +59,13 @@ class HiraganaAPI {
                 return
             }
             
-            if !((200...299).contains(response.statusCode)) {
+            if(!(200...299).contains(response.statusCode)){
                 let errorMessage: String = HTTPURLResponse.localizedString(forStatusCode: response.statusCode)
                 debugPrint("\(response.statusCode): \(errorMessage)")
                 completion(.failure(APIError.server(response.statusCode)))
                 return
             }
-            
-            guard response.statusCode == 200 else {
-                debugPrint("サーバエラー ステータスコード: \(response.statusCode)\n")
-                completion(.failure(APIError.server(response.statusCode)))
-                return
-            }
-            
+        
             guard let data = data, let jsonData = try? JSONDecoder().decode(Rubi.self, from: data) else {
                 debugPrint("json変換に失敗しました")
                 completion(.failure(APIError.unknown("jsonの変換エラー")))
