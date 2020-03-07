@@ -5,7 +5,7 @@
 - [ ] テスト  
 - [x] 表記ゆれや不必要な省略語  
 - [ ] selfのキャプチャー  
-- [ ] completionでのResult型の利用  
+- [x] completionでのResult型の利用  
 - [ ] deprecatedメソッドの利用  
 - [ ] メソッドの切り出し  
 - [x] Auto Layoutで制約つける  
