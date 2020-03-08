@@ -2,11 +2,11 @@
   
 ## 必須  
   
-- [ ] テスト  
+- [x] テスト  
 - [x] 表記ゆれや不必要な省略語  
 - [ ] selfのキャプチャー  
 - [x] completionでのResult型の利用  
-- [ ] deprecatedメソッドの利用  
+- [x] deprecatedメソッドの利用  
 - [ ] メソッドの切り出し  
 - [x] Auto Layoutで制約つける  
   
@@ -23,5 +23,4 @@
     - https://github.com/apple/swift/blob/master/docs/ErrorHandlingRationale.rst  
 - [x] API トークンのもたせ方の見直し（現在：環境変数）  
 - [x] `textViewText` はプロパティーとしての必要は特になかった  
-- [ ] Deprecatedなメソッドを利用している  
 - [ ] タスクのエラー処理も共通化は図られる  
