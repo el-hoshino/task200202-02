@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var convertedTextLabel: UILabel!
@@ -25,6 +25,17 @@ class ViewController: UIViewController {
         
         // 変換後テキストの文字列を折り返す
         self.convertedTextLabel.numberOfLines = 0
+        
+        textView.delegate = self
+    }
+    
+    // returnキーでキーボードdismiss
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
     func displayAlert(alertTitle: String, alertMessage: String) {
@@ -41,6 +52,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func convertHiragana() {
+        // キーボードdismiss
+        textView.resignFirstResponder()
+        
         let textViewText = textView.text!
         let isStringEmpty: Bool = textViewText.isEmpty
         
