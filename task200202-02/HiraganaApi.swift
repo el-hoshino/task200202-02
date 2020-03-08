@@ -15,14 +15,6 @@ class HiraganaAPI {
     private let postMethod = "POST"
     
     func convert(convertText: String, completion:@escaping (Result<String, Error>) -> Void) {
-        
-        // appIDが環境変数に入っていない場合
-        if appID == nil {
-            debugPrint("appID is empty. Please set environment variable GOO_API_KEY")
-            completion(.failure(APIError.unknown("no environment variable")))
-            return
-        }
-        
         let url = "https://labs.goo.ne.jp/api/hiragana"
         let outputType = "hiragana"
         let postData = PostData(app_id: self.appID, request_id: requestID, sentence: convertText, output_type: outputType)
@@ -65,7 +57,7 @@ class HiraganaAPI {
                 completion(.failure(APIError.server(response.statusCode)))
                 return
             }
-        
+            
             guard let data = data, let jsonData = try? JSONDecoder().decode(Rubi.self, from: data) else {
                 debugPrint("json変換に失敗しました")
                 completion(.failure(APIError.unknown("jsonの変換エラー")))
