@@ -23,8 +23,15 @@ class HiraganaAPI {
         self.request(method: "POST", url: url, postData: postData, completion: completion)
     }
     
-    func encodeToJson(postData: PostData) -> Foundation.Data? {
+    private func encodeToJson(postData: PostData) -> Foundation.Data? {
         guard let convertedData = try? JSONEncoder().encode(postData) else {
+            return nil
+        }
+        return convertedData
+    }
+    
+    private func decodeToSwiftString<T> (type: T.Type, data: Data) -> Rubi? {
+        guard let convertedData = try? JSONDecoder().decode(Rubi.self, from: data) else {
             return nil
         }
         return convertedData
@@ -43,7 +50,6 @@ class HiraganaAPI {
             return
         }
         
-        debugPrint("hoge::::::", type(of: uploadData))
         request.httpBody = uploadData
         
         //APIへPOSTしてresponseを受け取る
@@ -63,10 +69,11 @@ class HiraganaAPI {
                 return
             }
             
-            guard let data = data, let jsonData = try? JSONDecoder().decode(Rubi.self, from: data) else {
+            guard let data = data, let jsonData = self.decodeToSwiftString(type: Rubi.self, data: data) else {
                 completion(.failure(APIError.unknown("jsonの変換エラー")))
                 return
             }
+            
             debugPrint("(after) converted text: ", jsonData.converted)
             completion(.success(jsonData.converted))
             
