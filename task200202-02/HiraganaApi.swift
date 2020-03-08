@@ -32,7 +32,7 @@ class HiraganaAPI {
         
         //POSTするデータをURLRequestに持たせる
         guard let uploadData = try? JSONEncoder().encode(postData) else {
-            debugPrint("json生成に失敗しました")
+            completion(.failure(APIError.unknown("jsonの生成エラー")))
             return
         }
         request.httpBody = uploadData
@@ -40,26 +40,21 @@ class HiraganaAPI {
         //APIへPOSTしてresponseを受け取る
         let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
             if let error = error {
-                debugPrint ("error: \(error)")
                 completion(.failure(error))
                 return
             }
             
             guard let response = response as? HTTPURLResponse else {
-                debugPrint("server error")
                 completion(.failure(APIError.network))
                 return
             }
             
             if(!(200...299).contains(response.statusCode)){
-                let errorMessage: String = HTTPURLResponse.localizedString(forStatusCode: response.statusCode)
-                debugPrint("\(response.statusCode): \(errorMessage)")
                 completion(.failure(APIError.server(response.statusCode)))
                 return
             }
             
             guard let data = data, let jsonData = try? JSONDecoder().decode(Rubi.self, from: data) else {
-                debugPrint("json変換に失敗しました")
                 completion(.failure(APIError.unknown("jsonの変換エラー")))
                 return
             }
