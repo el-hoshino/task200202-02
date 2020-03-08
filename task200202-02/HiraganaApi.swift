@@ -10,7 +10,7 @@ import Foundation
 
 class HiraganaAPI {
     private let host = "https://labs.goo.ne.jp/api"
-    private let appID = ProcessInfo.processInfo.environment["GOO_API_KEY"] ?? nil
+    private let appID = AccessToken
     private let requestID = "record003"
     private let postMethod = "POST"
     
@@ -25,7 +25,7 @@ class HiraganaAPI {
         
         let url = "https://labs.goo.ne.jp/api/hiragana"
         let outputType = "hiragana"
-        let postData = PostData(app_id: self.appID!, request_id: requestID, sentence: convertText, output_type: outputType)
+        let postData = PostData(app_id: self.appID, request_id: requestID, sentence: convertText, output_type: outputType)
         
         debugPrint("(before) convert text: ", convertText)
         self.request(method: "POST", url: url, postData: postData, completion: completion)
