@@ -23,6 +23,13 @@ class HiraganaAPI {
         self.request(method: "POST", url: url, postData: postData, completion: completion)
     }
     
+    func encodeToJson(postData: PostData) -> Foundation.Data? {
+        guard let convertedData = try? JSONEncoder().encode(postData) else {
+            return nil
+        }
+        return convertedData
+    }
+    
     private func request(method: String, url: String, postData:PostData, completion: @escaping(Result<String, Error>) -> Void) {
         guard let _url = URL(string: url) else { return }
         // URLRequstの設定
@@ -30,11 +37,13 @@ class HiraganaAPI {
         request.httpMethod = method
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        //POSTするデータをURLRequestに持たせる
-        guard let uploadData = try? JSONEncoder().encode(postData) else {
+        // URLRequestに持たせるためのPOSTするデータを変換
+        guard let uploadData = encodeToJson(postData: postData) else {
             completion(.failure(APIError.unknown("jsonの生成エラー")))
             return
         }
+        
+        debugPrint("hoge::::::", type(of: uploadData))
         request.httpBody = uploadData
         
         //APIへPOSTしてresponseを受け取る
