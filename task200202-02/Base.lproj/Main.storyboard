@@ -47,6 +47,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2p-O7-ROW">
                                         <rect key="frame" x="126" y="0.0" width="31" height="80"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="convertHiraganaButton"/>
                                         <state key="normal" title="変換"/>
                                         <connections>
                                             <action selector="convertHiragana" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTo-Cj-mBx"/>
@@ -59,6 +60,7 @@
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ここに変換された文字が出力されます" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltg-Yx-jlR" customClass="CopyUILabel" customModule="task200202_02">
                                 <rect key="frame" x="50" y="538" width="314" height="224"/>
+                                <accessibility key="accessibilityConfiguration" identifier="convertedTextLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
