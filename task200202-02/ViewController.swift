@@ -38,6 +38,10 @@ class ViewController: UIViewController, UITextViewDelegate {
         return true
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        deleteTextView()
+    }
+    
     func displayAlert(alertTitle: String, alertMessage: String) {
         let alert: UIAlertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle:  UIAlertController.Style.alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default)
