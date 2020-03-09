@@ -8,26 +8,6 @@
 1回目提出時に頂いたレビューを元に改善しました。  
 "ボタン押下でアプリ強制終了"などのエラーに対しても、すぐに原因が探せるようになり若干の成長を感じます。  
   
-## 前回提出で指定されたタスク  
-  
-### 必須  
-  
-- [x] テスト  
-    - [#24](https://github.com/tokizuoh/task200202-02/issues/24)  
-- [x] 表記ゆれや不必要な省略語  
-    - [#16](https://github.com/tokizuoh/task200202-02/issues/16)  
-- [ ] selfのキャプチャー  
-- [x] completionでのResult型の利用  
-    - [#22](https://github.com/tokizuoh/task200202-02/issues/22)   
-- [x] deprecatedメソッドの利用  
-    - [#26](https://github.com/tokizuoh/task200202-02/issues/26)  
-- [ ] メソッドの切り出し  
-- [x] Auto Layoutで制約つける  
-    - [#18](https://github.com/tokizuoh/task200202-02/issues/18)  
-    
-### 任意  
-
-  
 ## アクセストークンの設定  
 `task200202-02`ディレクトリ直下に、下記の`AccessTokens.swift` を配置。 
   
@@ -48,61 +28,39 @@
 - Xcode 11.3.1  
 - Swift 5.1.3  
   
-## 工夫した点  
+## 前回提出で指定されたタスク  
+
+### 必須  
+
+- [x] テスト  
+  - [#24](https://github.com/tokizuoh/task200202-02/issues/24)  
+  - 反省ポイントです。テストするにあたりUIの操作が必要でUITestを書きました。本来ならば、関数やメソッド単体でテストできるように設計する必要があると考えます。  
+- [x] 表記ゆれや不必要な省略語  
+  - [#16](https://github.com/tokizuoh/task200202-02/issues/16)  
+- [ ] selfのキャプチャー  
+- [x] completionでのResult型の利用  
+  - [#22](https://github.com/tokizuoh/task200202-02/issues/22)  
+- [x] deprecatedメソッドの利用  
+  - [#26](https://github.com/tokizuoh/task200202-02/issues/26)  
+- [ ] メソッドの切り出し  
+- [x] Auto Layoutで制約つける  
+  - [#18](https://github.com/tokizuoh/task200202-02/issues/18)  
   
-### 実装面  
-- 空の文字列をAPIに渡す前に検知させた。  
-    - 空の文字列をAPIに渡すと `server error` になるので、エラーが出ると分かっているものはAPIに渡さずに検知したほうが良いと考えたため。  
-- 入力を `textView` にし、複数行でも見やすくした。  
-    - `textField`だと自動で改行されず、一行のみで表示される。  
-- APIキー（今回でいうところのgooラボappID）の管理を環境変数にした。  
-    - [iOSアプリ内にAPIアクセスキーを保持するベストプラクティス(Swift)](https://qiita.com/uhooi/items/c3fd487f2ba6cd1990af) では、`.swift `に直書きして `.gitignore` に入れると記載されているが、大規模開発になった際の `.gitignore` 記述忘れをい考慮して環境変数での管理を選んだ。  
-  
-### 開発面  
-- コミットメッセージにコミット内容別のプレフィックスをつけて、コミット内容を分かりやすくした。
-    - 参考：[【今日からできる】コミットメッセージに 「プレフィックス」 をつけるだけで、開発効率が上がった話](https://qiita.com/numanomanu/items/45dd285b286a1f7280ed)  
-- ブランチの命名規則  
-    - `feature\{issue番号}`  
-    - 参考：- [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)  
-  
-## 悩み  
-- APIから受け取ったレスポンスから、エラーの際の細かいメッセージを取得したかったができなかった。　　（`HiraganaApi.swift`）  
-    - 下記を試した結果、全て "bad request" と出力された。  
-        - 存在しない `appID`  
-        - 存在しない `outputType`  
-        - `Content-Type` が空  
-    - 参考：[gooラボ：APIのエラーレスポンスについて](https://labs.goo.ne.jp/api_error_info/)  
-  
-```swift
-if !((200...299).contains(response.statusCode)) {
-    let errorMessage: String = HTTPURLResponse.localizedString(forStatusCode: response.statusCode)
-    debugPrint("\(response.statusCode): \(errorMessage)")
-    completion?(nil)
-    return
-}
-```
-  
-→ 「`Invalid app_id`」などを取得したかった。  
-  
-- 内部エラーをユーザーにどのように伝えるかが分からない。  
-    - API周りのエラーをアラートで伝えるか、UILabelのみで伝えるか、など。  
-  
-- エラーハンドリングをどこで行うのがベストなのか分からない。  
-    - 例えば、関数の呼ぶ方、呼ばれる方  
-        - 関数の呼ぶ方：関数の戻り値でエラーハンドリング  
-        - 関数の呼ばれる方：エラーメッセージを出力して強制終了  
-  
-## 改善点  
-- MVC/MVP/MVVM/Redux による適切な設計  
-    - どの言語でもこういった設計を実装に落とし込んだことがないので次回提出時にチャレンジします。  
-- gitの運用 (READMEなどのドキュメント整備は単独でブランチ切るか？など)  
-- テストの導入 
-    - [やさしいSwift単体テスト 〜テスト可能なクラス設計・前編〜](https://qiita.com/yokoyas000/items/b00012c8b1a84238becf) こちらを現在読んでいます。  
-- 複数デバイスに対応するレイアウト構築  
-    - iPhone 11 Pro Maxでレイアウトを作成していましたが、iPhone8などの他サイズのデバイスでレイアウトが崩れます。これは各UI要素の位置を絶対位置で置いているからだと考えます。  
-    - 変換後の文字列をタップしたらコピーする機能（[issue#4](https://github.com/tokizuoh/task200202-02/issues/4)）をiOS13では非推奨の関数を使用しているため修正が必要。  
-  
-## 参考にしたサイト  
-  - [【Xcode】ひらがな化APIを使ったアプリを作りました【Swift】](https://qiita.com/haruusagi/items/9da1ca30f56487f21801)  
-      - おそらく同じ課題を受けた方だと思われる。この方のコードに加え、エラーメッセージの詳細表示などのリファクタリングを行った。  
-  
+### 任意  
+
+- [x] `UITextView` の枠内をタップしたときに初期値を消去  
+  - [#34](https://github.com/tokizuoh/task200202-02/issues/34), [#38](https://github.com/tokizuoh/task200202-02/issues/38)  
+  - アプリ起動後、初めて `UITextView` を編集する際に文字列を空にする動作を取り入れました。これは、変換後に誤った文字列を指定してしまい、必ず文字列を全て削除する必要性は無いと考えたからです。もし文字列を全て削除したい場合には `UITextView` 直下の削除ボタンを押下すれば良いです。  
+- [x] キーボードで結果がみれない  
+  - [#32](https://github.com/tokizuoh/task200202-02/issues/32)  
+  - 変換ボタン・入力後のリターンキー押下でキーボードを隠す処理を取り入れました。  
+- [x] textViewText.utf8.countは目的からするとisEmptyを使った方がよいかと  
+  - [こちら](https://github.com/tokizuoh/task200202-02/commit/63afb15425391ab664d500e884cf11a6fb6d0b33)にて対応。  
+- [ ] エラー処理について  
+  - API呼び出しなどの非同期処理はmanual propagation  
+  - https://github.com/apple/swift/blob/master/docs/ErrorHandlingRationale.rst  
+- [x] API トークンのもたせ方の見直し（現在：環境変数）  
+  - [こちら](https://github.com/tokizuoh/task200202-02/commit/a59a7f90a686508cee30f72873c5b05f717b6926)で対応。  
+- [x] `textViewText` はプロパティーとしての必要は特になかった  
+  - [こちら](https://github.com/tokizuoh/task200202-02/commit/d50f20380ec52e52a1137b1e938f34fb6f98b93e)で対応。    
+- [ ] タスクのエラー処理も共通化は図られる  
