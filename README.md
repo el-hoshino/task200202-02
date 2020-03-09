@@ -4,8 +4,8 @@
 入力された文章を全てひらがなに変換するアプリ  
   
 ## 所感  
-2回目の提出です。([1回目提出branch](https://github.com/tokizuoh/task200202-02/tree/submission/20200303))  
-1回目提出時に頂いたレビューを元に改善しました。  
+第2回目の提出です。([第1回目提出branch](https://github.com/tokizuoh/task200202-02/tree/submission/20200303))  
+第1回目提出時に頂いたレビューを元に改善しました。  
 "ボタン押下でアプリ強制終了"などのエラーに対しても、すぐに原因が探せるようになり若干の成長を感じます。  
   
 ## アクセストークンの設定  
@@ -59,7 +59,7 @@
 - [ ] エラー処理について  
   - API呼び出しなどの非同期処理はmanual propagation  
   - https://github.com/apple/swift/blob/master/docs/ErrorHandlingRationale.rst  
-- [x] API トークンのもたせ方の見直し（現在：環境変数）  
+- [x] API トークンのもたせ方の見直し（第1回提出時：環境変数）  
   - [こちら](https://github.com/tokizuoh/task200202-02/commit/a59a7f90a686508cee30f72873c5b05f717b6926)で対応。  
 - [x] `textViewText` はプロパティーとしての必要は特になかった  
   - [こちら](https://github.com/tokizuoh/task200202-02/commit/d50f20380ec52e52a1137b1e938f34fb6f98b93e)で対応。    
