@@ -30,7 +30,7 @@ class HiraganaAPI {
         return convertedData
     }
     
-    private func decodeToSwiftString<T> (type: T.Type, data: Data) -> Rubi? {
+    private func decodeToRubi (data: Data) -> Rubi? {
         guard let convertedData = try? JSONDecoder().decode(Rubi.self, from: data) else {
             return nil
         }
@@ -69,7 +69,7 @@ class HiraganaAPI {
                 return
             }
             
-            guard let data = data, let jsonData = self.decodeToSwiftString(type: Rubi.self, data: data) else {
+            guard let data = data, let jsonData = self.decodeToRubi(data: data) else {
                 completion(.failure(APIError.unknown("jsonの変換エラー")))
                 return
             }
