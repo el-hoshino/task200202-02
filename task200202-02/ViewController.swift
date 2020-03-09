@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     
     let hiraganaAPI = HiraganaAPI()
+    var isFirstEditing: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,10 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     // UITextViewがタップされ、入力可能になる直前の処理
     func textViewDidBeginEditing(_ textView: UITextView) {
-        deleteTextViewText()
+        if(isFirstEditing){
+            deleteTextViewText()
+            isFirstEditing = false
+        }
     }
     
     func displayAlert(alertTitle: String, alertMessage: String) {
