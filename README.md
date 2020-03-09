@@ -4,27 +4,46 @@
 入力された文章を全てひらがなに変換するアプリ  
   
 ## 所感  
-Xcodeを扱うのがほぼ初めてで、慣れるまでに時間がかかりました。  
-Xcodeに慣れる時間と機能追加に大半の時間を割いたので、テストや設計まで着手できなかったのが反省です。  
+2回目の提出です。([1回目提出branch](https://github.com/tokizuoh/task200202-02/tree/submission/20200303))  
+1回目提出時に頂いたレビューを元に改善しました。  
+"ボタン押下でアプリ強制終了"などのエラーに対しても、すぐに原因が探せるようになり若干の成長を感じます。  
   
-また、Swiftをまともに扱うのは今回が初めてで、Optional型などのSwift特有の安全な言語思想に慣れるまでに時間がかかりました。  
+## 前回提出で指定されたタスク  
   
-下記の「工夫した点」にも記載しましたが、自分が知っている技術を取り入れました。  
+### 必須  
   
-今回はiOSアプリ開発について期間を設けて勉強するのは初めてで、自分の開発の幅が広がりとても楽しかったです。  
-エラーハンドリングの適切な場所などがよく分かっていないので、これからも手を動かして学んでいきたいです。  
+- [x] テスト  
+    - [#24](https://github.com/tokizuoh/task200202-02/issues/24)  
+- [x] 表記ゆれや不必要な省略語  
+    - [#16](https://github.com/tokizuoh/task200202-02/issues/16)  
+- [ ] selfのキャプチャー  
+- [x] completionでのResult型の利用  
+    - [#22](https://github.com/tokizuoh/task200202-02/issues/22)   
+- [x] deprecatedメソッドの利用  
+    - [#26](https://github.com/tokizuoh/task200202-02/issues/26)  
+- [ ] メソッドの切り出し  
+- [x] Auto Layoutで制約つける  
+    - [#18](https://github.com/tokizuoh/task200202-02/issues/18)  
+    
+### 任意  
+
   
-## 環境変数の設定  
+## アクセストークンの設定  
+`task200202-02`ディレクトリ直下に、下記の`AccessTokens.swift` を配置。 
   
-|key  |value  |
-|:--|:--|  
-|GOO_API_KEY|[gooラボ](https://labs.goo.ne.jp/apiusage/)にて取得したアプリケーションID|  
+```swift  
+  let AccessToken = "gooラボにて取得したアプリケーションID"
+```
+  
+[gooラボ](https://labs.goo.ne.jp/apiusage/)  
   
 ## 使い方  
 1. ひらがなに変換したい文章をテキストフィールドに入力  
 2. 「変換」ボタンを押下  
 3. 「変換結果」の直下にひらがなに変換された文章が出力  
-    
+  
+変換された文章を長押しでコピーすることができます。
+  
 ## 開発環境  
 - Xcode 11.3.1  
 - Swift 5.1.3  
