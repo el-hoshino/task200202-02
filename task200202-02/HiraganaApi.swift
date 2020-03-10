@@ -9,13 +9,12 @@
 import Foundation
 
 class HiraganaAPI {
-    private let host = "https://labs.goo.ne.jp/api"
     private let appID = accessToken
     private let requestID = "record003"
     private let postMethod = "POST"
     
     func convert(convertText: String, completion:@escaping (Result<String, Error>) -> Void) {
-        let url = "https://labs.goo.ne.jp/api/hiragana"
+        let url = URL(string: "https://labs.goo.ne.jp/api/hiragana")!
         let outputType = "hiragana"
         let postData = PostData(app_id: self.appID, request_id: requestID, sentence: convertText, output_type: outputType)
         
@@ -80,10 +79,9 @@ class HiraganaAPI {
         
     }
     
-    private func request(method: String, url: String, postData:PostData, completion: @escaping(Result<String, Error>) -> Void) {
-        guard let _url = URL(string: url) else { return }
+    private func request(method: String, url: URL, postData:PostData, completion: @escaping(Result<String, Error>) -> Void) {
         // URLRequstの設定
-        var request = URLRequest(url: _url)
+        var request = URLRequest(url: url)
         request.httpMethod = method
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
