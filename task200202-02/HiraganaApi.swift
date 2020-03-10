@@ -8,6 +8,10 @@
 
 import Foundation
 
+func isInClosedInterval(start: Int, end: Int, value: Int) -> Bool {
+    return (start...end).contains(value)
+}
+
 class HiraganaAPI {
     private let host = "https://labs.goo.ne.jp/api"
     private let appID = AccessToken
@@ -64,7 +68,7 @@ class HiraganaAPI {
                 return
             }
             
-            if(!(200...299).contains(response.statusCode)){
+            if(!isInClosedInterval(start: 200, end: 299, value: response.statusCode)) {
                 completion(.failure(APIError.server(response.statusCode)))
                 return
             }
