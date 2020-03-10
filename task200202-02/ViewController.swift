@@ -73,16 +73,20 @@ class ViewController: UIViewController, UITextViewDelegate {
             return
         }
         
-        self.hiraganaAPI.convert(convertText: textViewText) { (result) in
+        self.hiraganaAPI.convert(convertText: textViewText) { [weak self] (result) in
+            guard let self = self else { return }
+            
             switch result {
             case.success(let value):
                 DispatchQueue.main.async {
                     self.convertedTextLabel.text = value
                 }
+                
             case.failure(let error):
                 debugPrint(error)
-                self.displayAlert(alertTitle: "変換失敗", alertMessage: "開発者にお問い合わせください")
-                return
+                DispatchQueue.main.async {
+                    self.displayAlert(alertTitle: "変換失敗", alertMessage: "開発者にお問い合わせください")
+                }
             }
         }
     }
