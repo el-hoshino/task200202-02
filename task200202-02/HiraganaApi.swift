@@ -8,10 +8,6 @@
 
 import Foundation
 
-func isInClosedInterval(start: Int, end: Int, value: Int) -> Bool {
-    return (start...end).contains(value)
-}
-
 class HiraganaAPI {
     private let host = "https://labs.goo.ne.jp/api"
     private let appID = accessToken
@@ -41,6 +37,38 @@ class HiraganaAPI {
         return convertedData
     }
     
+    private func apiTask(with request: URLRequest, from uploadData: Data, completion: @escaping (Result<Data, Error>) -> Void) -> URLSessionTask {
+        
+        let task = URLSession.shared.uploadTask(with: request, from: uploadData) { (data, response, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failure(APIError.network))
+                return
+            }
+            
+            guard (200 ..< 300).contains(response.statusCode) else {
+                completion(.failure(APIError.server(response.statusCode)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(APIError.unknown("jsonの変換エラー")))
+                return
+            }
+            
+            completion(.success(data))
+            
+        }
+        
+        return task
+        
+    }
+    
     private func request(method: String, url: String, postData:PostData, completion: @escaping(Result<String, Error>) -> Void) {
         guard let _url = URL(string: url) else { return }
         // URLRequstの設定
@@ -57,30 +85,20 @@ class HiraganaAPI {
         request.httpBody = uploadData
         
         //APIへPOSTしてresponseを受け取る
-        let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
-            if let error = error {
+        let task = apiTask(with: request, from: uploadData) { (result) in
+            switch result {
+            case .success(let data):
+                guard let jsonData = self.decodeToRubi(data: data) else {
+                    completion(.failure(APIError.unknown("jsonの変換エラー")))
+                    return
+                }
+                
+                debugPrint("(after) converted text: ", jsonData.converted)
+                completion(.success(jsonData.converted))
+                
+            case .failure(let error):
                 completion(.failure(error))
-                return
             }
-            
-            guard let response = response as? HTTPURLResponse else {
-                completion(.failure(APIError.network))
-                return
-            }
-            
-            if(!isInClosedInterval(start: 200, end: 299, value: response.statusCode)) {
-                completion(.failure(APIError.server(response.statusCode)))
-                return
-            }
-            
-            guard let data = data, let jsonData = self.decodeToRubi(data: data) else {
-                completion(.failure(APIError.unknown("jsonの変換エラー")))
-                return
-            }
-            
-            debugPrint("(after) converted text: ", jsonData.converted)
-            completion(.success(jsonData.converted))
-            
         }
         task.resume()
     }
