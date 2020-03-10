@@ -69,6 +69,17 @@ class HiraganaAPI {
         
     }
     
+    private func getRubiString(from result: Result<Data, Error>) throws -> String {
+        
+        guard let jsonData = self.decodeToRubi(data: try result.get()) else {
+            throw APIError.unknown("jsonの変換エラー")
+        }
+        
+        debugPrint("(after) converted text: ", jsonData.converted)
+        return jsonData.converted
+        
+    }
+    
     private func request(method: String, url: String, postData:PostData, completion: @escaping(Result<String, Error>) -> Void) {
         guard let _url = URL(string: url) else { return }
         // URLRequstの設定
@@ -85,18 +96,12 @@ class HiraganaAPI {
         request.httpBody = uploadData
         
         //APIへPOSTしてresponseを受け取る
-        let task = apiTask(with: request, from: uploadData) { (result) in
-            switch result {
-            case .success(let data):
-                guard let jsonData = self.decodeToRubi(data: data) else {
-                    completion(.failure(APIError.unknown("jsonの変換エラー")))
-                    return
-                }
+        let task = apiTask(with: request, from: uploadData) { [self] (result) in
+            do {
+                let rubiString = try self.getRubiString(from: result)
+                completion(.success(rubiString))
                 
-                debugPrint("(after) converted text: ", jsonData.converted)
-                completion(.success(jsonData.converted))
-                
-            case .failure(let error):
+            } catch let error {
                 completion(.failure(error))
             }
         }
