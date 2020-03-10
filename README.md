@@ -12,7 +12,7 @@
 `task200202-02`ディレクトリ直下に、下記の`AccessTokens.swift` を配置。 
   
 ```swift  
-  let AccessToken = "gooラボにて取得したアプリケーションID"
+  let accessToken = "gooラボにて取得したアプリケーションID"
 ```
   
 [gooラボ](https://labs.goo.ne.jp/apiusage/)  

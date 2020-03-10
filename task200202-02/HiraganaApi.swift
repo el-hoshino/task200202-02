@@ -14,7 +14,7 @@ func isInClosedInterval(start: Int, end: Int, value: Int) -> Bool {
 
 class HiraganaAPI {
     private let host = "https://labs.goo.ne.jp/api"
-    private let appID = AccessToken
+    private let appID = accessToken
     private let requestID = "record003"
     private let postMethod = "POST"
     
