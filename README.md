@@ -36,15 +36,17 @@
   - [#24](https://github.com/tokizuoh/task200202-02/issues/24)  
   - 反省ポイントです。テストするにあたりUIの操作が必要でUITestを書きました。本来ならば、関数やメソッド単体でテストできるように設計する必要があると考えます。  
 - [x] 表記ゆれや不必要な省略語  
-  - [#16](https://github.com/tokizuoh/task200202-02/issues/16)  
+    - [#16](https://github.com/tokizuoh/task200202-02/issues/16)  
 - [ ] selfのキャプチャー  
+    - [こちら](https://github.com/tokizuoh/task200202-02/blob/master/task200202-02/HiraganaApi.swift#L21)で反映をしましたが、キャプチャーについての理解には至っておりません。第2回提出の後に質問したいです。  
 - [x] completionでのResult型の利用  
-  - [#22](https://github.com/tokizuoh/task200202-02/issues/22)  
+    - [#22](https://github.com/tokizuoh/task200202-02/issues/22)  
 - [x] deprecatedメソッドの利用  
-  - [#26](https://github.com/tokizuoh/task200202-02/issues/26)  
-- [ ] メソッドの切り出し  
+    - [#26](https://github.com/tokizuoh/task200202-02/issues/26)  
+- [x] メソッドの切り出し  
+    - [#42](https://github.com/tokizuoh/task200202-02/issues/42)  
 - [x] Auto Layoutで制約つける  
-  - [#18](https://github.com/tokizuoh/task200202-02/issues/18)  
+    - [#18](https://github.com/tokizuoh/task200202-02/issues/18)  
   
 ### 任意  
 
